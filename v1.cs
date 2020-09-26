@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 
 namespace ConsoleApp1
@@ -41,20 +41,22 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            String input = File.ReadAllText(@"test.txt");
+            String input = File.ReadAllText(@"v1.txt");
 
 
             //int i = 0, j = 0;
-            double[,] e_matrix = new double[5, 5];
-            double[,] w1_matrix = new double[4, 4];
-            double[,] w2_matrix = new double[4, 4];
-            double[,] w3_matrix = new double[4, 4];
-            double[,] w4_matrix = new double[4, 4];
-            double[,] w5_matrix = new double[4, 4];
+            double[,] e_matrix = new double[7, 7];
+            double[,] w1_matrix = new double[6, 6];
+            double[,] w2_matrix = new double[6, 6];
+            double[,] w3_matrix = new double[6, 6];
+            double[,] w4_matrix = new double[6, 6];
+            double[,] w5_matrix = new double[6, 6];
+            double[,] w6_matrix = new double[6, 6];
+            double[,] w7_matrix = new double[6, 6];
 
 
-            var lines = File.ReadAllLines(@"test.txt");
-            
+            var lines = File.ReadAllLines(@"v1.txt");
+
             // tmp vars for creating matrixs
             var counter = 0;
             var j = 0;
@@ -62,17 +64,17 @@ namespace ConsoleApp1
             var plus_c = 0;
             var res = 0.0;
 
-            for (var c = 0; c < 6; c++)
+            for (var c = 0; c < 8; c++)
             {
-                
+
                 if (c == 0)
                 {
-                    num_lines = 5;
+                    num_lines = 7;
                 }
                 else
                 {
-                    plus_c = num_lines+1;
-                    num_lines += 5;
+                    plus_c = num_lines + 1;
+                    num_lines += 7;
                 }
 
                 for (var i = plus_c; i < num_lines; i++)
@@ -94,8 +96,8 @@ namespace ConsoleApp1
                         {
                             res = double.Parse(col.Trim());
                         }
-                        
-                        switch (c) 
+
+                        switch (c)
                         {
                             case 0:
                                 e_matrix[i, j] = res;
@@ -121,6 +123,14 @@ namespace ConsoleApp1
                                 w5_matrix[i - (plus_c), j] = res;
                                 Console.Write("{0}\t", w5_matrix[i - (plus_c), j]);
                                 break;
+                            case 6:
+                                w6_matrix[i - (plus_c), j] = res;
+                                Console.Write("{0}\t", w6_matrix[i - (plus_c), j]);
+                                break;
+                            case 7:
+                                w7_matrix[i - (plus_c), j] = res;
+                                Console.Write("{0}\t", w7_matrix[i - (plus_c), j]);
+                                break;
                         }
 
                         //Console.Write("{0}\t", e[i, j]);
@@ -132,16 +142,16 @@ namespace ConsoleApp1
             }
 
             // e
-            double[] e_tilda_mtrx = new double[5];
+            double[] e_tilda_mtrx = new double[7];
 
             e_tilda_mtrx = getTildaArray(e_matrix, e_tilda_mtrx, "e");
-            
+
 
             var e_tilda = e_tilda_mtrx.Sum();
             Console.WriteLine();
             Console.WriteLine("e_tilda: {0} ", e_tilda);
 
-            double[] e_array = new double[5];
+            double[] e_array = new double[7];
 
             Console.Write("e_array: ");
 
@@ -150,7 +160,7 @@ namespace ConsoleApp1
             Console.WriteLine();
 
             // w1
-            double[] w1_tilda_mtrx = new double[4];
+            double[] w1_tilda_mtrx = new double[6];
 
             w1_tilda_mtrx = getTildaArray(w1_matrix, w1_tilda_mtrx, "w1");
 
@@ -159,7 +169,7 @@ namespace ConsoleApp1
             Console.WriteLine();
             Console.WriteLine("w1_tilda: {0} ", w1_tilda);
 
-            double[] w1_array = new double[4];
+            double[] w1_array = new double[6];
 
             Console.Write("w1_array: ");
 
@@ -168,7 +178,7 @@ namespace ConsoleApp1
             Console.WriteLine();
 
             // w2
-            double[] w2_tilda_mtrx = new double[4];
+            double[] w2_tilda_mtrx = new double[6];
 
             w2_tilda_mtrx = getTildaArray(w2_matrix, w2_tilda_mtrx, "w2");
 
@@ -177,7 +187,7 @@ namespace ConsoleApp1
             Console.WriteLine();
             Console.WriteLine("w2_tilda: {0} ", w2_tilda);
 
-            double[] w2_array = new double[4];
+            double[] w2_array = new double[6];
 
             Console.Write("w2_array: ");
 
@@ -187,7 +197,7 @@ namespace ConsoleApp1
 
 
             // w3
-            double[] w3_tilda_mtrx = new double[4];
+            double[] w3_tilda_mtrx = new double[6];
 
             w3_tilda_mtrx = getTildaArray(w3_matrix, w3_tilda_mtrx, "w3");
 
@@ -196,7 +206,7 @@ namespace ConsoleApp1
             Console.WriteLine();
             Console.WriteLine("w3_tilda: {0} ", w3_tilda);
 
-            double[] w3_array = new double[4];
+            double[] w3_array = new double[6];
 
             Console.Write("w3_array: ");
 
@@ -206,7 +216,7 @@ namespace ConsoleApp1
 
 
             // w4
-            double[] w4_tilda_mtrx = new double[4];
+            double[] w4_tilda_mtrx = new double[6];
 
             w4_tilda_mtrx = getTildaArray(w4_matrix, w4_tilda_mtrx, "w4");
 
@@ -215,7 +225,7 @@ namespace ConsoleApp1
             Console.WriteLine();
             Console.WriteLine("w4_tilda: {0} ", w4_tilda);
 
-            double[] w4_array = new double[4];
+            double[] w4_array = new double[6];
 
             Console.Write("w4_array: ");
 
@@ -225,7 +235,7 @@ namespace ConsoleApp1
 
 
             // w5
-            double[] w5_tilda_mtrx = new double[4];
+            double[] w5_tilda_mtrx = new double[6];
 
             w5_tilda_mtrx = getTildaArray(w5_matrix, w5_tilda_mtrx, "w5");
 
@@ -234,7 +244,7 @@ namespace ConsoleApp1
             Console.WriteLine();
             Console.WriteLine("w5_tilda: {0} ", w5_tilda);
 
-            double[] w5_array = new double[4];
+            double[] w5_array = new double[6];
 
             Console.Write("w5_array: ");
 
@@ -243,13 +253,57 @@ namespace ConsoleApp1
             Console.WriteLine();
 
 
-            double[] w = new double[4];
+            // w6
+            double[] w6_tilda_mtrx = new double[6];
 
-            for (var i=0; i< w.Length; i++) 
+            w6_tilda_mtrx = getTildaArray(w6_matrix, w6_tilda_mtrx, "w6");
+
+
+            var w6_tilda = w6_tilda_mtrx.Sum();
+            Console.WriteLine();
+            Console.WriteLine("w6_tilda: {0} ", w6_tilda);
+
+            double[] w6_array = new double[6];
+
+            Console.Write("w6_array: ");
+
+            w6_array = getMatrixArray(w6_array, w6_tilda_mtrx, w6_tilda);
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+            // w7
+            double[] w7_tilda_mtrx = new double[6];
+
+            w7_tilda_mtrx = getTildaArray(w7_matrix, w7_tilda_mtrx, "w7");
+
+
+            var w7_tilda = w7_tilda_mtrx.Sum();
+            Console.WriteLine();
+            Console.WriteLine("w7_tilda: {0} ", w7_tilda);
+
+            double[] w7_array = new double[6];
+
+            Console.Write("w7_array: ");
+
+            w7_array = getMatrixArray(w7_array, w7_tilda_mtrx, w7_tilda);
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+
+
+
+            double[] w = new double[6];
+
+            for (var i = 0; i < w.Length; i++)
             {
-                w[i] = e_array[0] * w1_array[i] + e_array[1] * w2_array[i] + e_array[2] * w3_array[i] + e_array[3] * w4_array[i] + e_array[4] * w5_array[i];  
-                Console.WriteLine("w{0}: {1}", i+1, w[i]);
+                w[i] = e_array[0] * w1_array[i] + e_array[1] * w2_array[i] + e_array[2] * w3_array[i] + e_array[3] * w4_array[i] + e_array[4] * w5_array[i] + e_array[5] * w6_array[i] + e_array[6] * w7_array[i];
+                Console.WriteLine("w{0}: {1}", i + 1, w[i]);
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Optimal alternative x{0}, w{0} = {1}", w.ToList().IndexOf(w.Max()) + 1, w.Max());
 
 
             //for (double[] e_row in e_matrix)
@@ -260,7 +314,7 @@ namespace ConsoleApp1
             //    }
 
             //}
-  
+
 
 
 
@@ -270,7 +324,7 @@ namespace ConsoleApp1
             //    Console.WriteLine("{0}", row);
             //    if (row.value1 == "\r" && row.id1 == 5)
             //    {
-                    
+
             //    }
             //    Console.WriteLine("{0} {1}", row.value1, row.id1);
             //    j = 0;
@@ -294,7 +348,7 @@ namespace ConsoleApp1
             //    }
             //    i++;
             //}
-            
+
             Console.ReadKey();
         }
     }
